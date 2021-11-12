@@ -12,18 +12,18 @@ namespace kieraninvest4u1
 {
     public partial class Form1 : Form
     {
-        private const decimal b1_OneYearInterestRate = 0.005000M;
-        private const decimal b1_ThreeYearInterestRate = 0.006250M;
-        private const decimal b1_FiveYearInterestRate = 0.007125M;
-        private const decimal b1_TenYearInterestRate = 0.011250M;
+        private const double b1_OneYearInterestRate = 0.005000;
+        private const double b1_ThreeYearInterestRate = 0.006250;
+        private const double b1_FiveYearInterestRate = 0.007125;
+        private const double b1_TenYearInterestRate = 0.011250;
 
-        private const decimal a1_OneYearInterestRate = 0.006000M;
-        private const decimal a1_ThreeYearInterestRate = 0.007250M;
-        private const decimal a1_FiveYearInterestRate = 0.008125M;
-        private const decimal a1_TenYearInterestRate = 0.012500M;
-        
-        private const decimal baseMoney = 100000;
+        private const double a1_OneYearInterestRate = 0.006000;
+        private const double a1_ThreeYearInterestRate = 0.007250;
+        private const double a1_FiveYearInterestRate = 0.008125;
+        private const double a1_TenYearInterestRate = 0.012500;
 
+        private const double baseMoney = 100000;
+        private static Random random = new Random();
 
         public Form1()
         {
@@ -32,19 +32,96 @@ namespace kieraninvest4u1
 
         private void DisplayButton_Click(object sender, EventArgs e)
         {
-            var amount = Convert.ToDecimal(this.InvestmentTxtbox.Text);
+            listView1.Items.Clear();
+            var amount = Convert.ToDouble(this.InvestmentTxtbox.Text);
             if (amount > 0)
             {
                 if (amount <= baseMoney)
                 {
+                    var b1_OneYear = CalculateCompoundInterest(amount, 1, b1_OneYearInterestRate);
+                    var b1_ThreeYear = CalculateCompoundInterest(amount, 3, b1_ThreeYearInterestRate);
+                    var b1_FiveYear = CalculateCompoundInterest(amount, 5, b1_FiveYearInterestRate);
+                    var b1_TenYear = CalculateCompoundInterest(amount, 10, b1_TenYearInterestRate);
 
 
+                    string[] arr = new string[4];
+                    ListViewItem item;
+                    arr[0] = amount.ToString();
+                    arr[1] = b1_OneYearInterestRate.ToString();
+                    arr[2] = (b1_OneYear - amount).ToString("n2");
+                    arr[3] = b1_OneYear.ToString();
+                    item = new ListViewItem(arr);
+                    listView1.Items.Add(item);
+
+                    arr[0] = amount.ToString();
+                    arr[1] = b1_ThreeYearInterestRate.ToString();
+                    arr[2] = (b1_ThreeYear - amount).ToString("n2");
+                    arr[3] = b1_ThreeYear.ToString();
+                    item = new ListViewItem(arr);
+                    listView1.Items.Add(item);
+
+                    arr[0] = amount.ToString();
+                    arr[1] = b1_FiveYearInterestRate.ToString();
+                    arr[2] = (b1_FiveYear - amount).ToString("n2");
+                    arr[3] = b1_FiveYear.ToString();
+                    item = new ListViewItem(arr);
+                    listView1.Items.Add(item);
+
+                    arr[0] = amount.ToString();
+                    arr[1] = b1_TenYearInterestRate.ToString();
+                    arr[2] = (b1_TenYear - amount).ToString("n2");
+                    arr[3] = b1_TenYear.ToString();
+                    item = new ListViewItem(arr);
+                    listView1.Items.Add(item);
                 }
                 else
                 {
+                    var a1_OneYear = CalculateCompoundInterest(amount, 1, a1_OneYearInterestRate);
+                    var a1_ThreeYear = CalculateCompoundInterest(amount, 3, a1_ThreeYearInterestRate);
+                    var a1_FiveYear = CalculateCompoundInterest(amount, 5, a1_FiveYearInterestRate);
+                    var a1_TenYear = CalculateCompoundInterest(amount, 10, a1_TenYearInterestRate);
 
+
+                    string[] arr = new string[4];
+                    ListViewItem item;
+                    arr[0] = amount.ToString();
+                    arr[1] = a1_OneYearInterestRate.ToString();
+                    arr[2] = (a1_OneYear - amount).ToString("n2");
+                    arr[3] = a1_OneYear.ToString();
+                    item = new ListViewItem(arr);
+                    listView1.Items.Add(item);
+
+                    arr[0] = amount.ToString();
+                    arr[1] = a1_ThreeYearInterestRate.ToString();
+                    arr[2] = (a1_ThreeYear - amount).ToString("n2");
+                    arr[3] = a1_ThreeYear.ToString();
+                    item = new ListViewItem(arr);
+                    listView1.Items.Add(item);
+
+                    arr[0] = amount.ToString();
+                    arr[1] = a1_FiveYearInterestRate.ToString();
+                    arr[2] = (a1_FiveYear - amount).ToString("n2");
+                    arr[3] = a1_FiveYear.ToString();
+                    item = new ListViewItem(arr);
+                    listView1.Items.Add(item);
+
+                    arr[0] = amount.ToString();
+                    arr[1] = a1_TenYearInterestRate.ToString();
+                    arr[2] = (a1_TenYear - amount).ToString("n2");
+                    arr[3] = a1_TenYear.ToString();
+                    item = new ListViewItem(arr);
+                    listView1.Items.Add(item);
                 }
             }
+        }
+
+        private double CalculateCompoundInterest(double principal, int tenure, double interestRate)
+        {
+            //Using the formula A = P(1 + r/n)nt
+            var part = 1 + (interestRate / 12);
+            var total = principal * Math.Pow(part, (12 * tenure));
+
+            return Math.Round(total, 2);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -53,6 +130,102 @@ namespace kieraninvest4u1
         }
 
         private void InvestmentTxtbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void InvestmentGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private double GetInterestRate(int tenure, double amount)
+        {
+            double interestRate = 0;
+            if (amount <= baseMoney)
+            {
+                switch (tenure)
+                {
+                    case 1:
+                        interestRate = b1_OneYearInterestRate;
+                        break;
+                    case 3:
+                        interestRate = b1_ThreeYearInterestRate;
+                        break;
+                    case 5:
+                        interestRate = b1_FiveYearInterestRate;
+                        break;
+                    case 10:
+                        interestRate = b1_TenYearInterestRate;
+                        break;
+                }
+            }
+            else
+            {
+                switch (tenure)
+                {
+                    case 1:
+                        interestRate = a1_OneYearInterestRate;
+                        break;
+                    case 3:
+                        interestRate = a1_ThreeYearInterestRate;
+                        break;
+                    case 5:
+                        interestRate = a1_FiveYearInterestRate;
+                        break;
+                    case 10:
+                        interestRate = a1_TenYearInterestRate;
+                        break;
+                }
+            }
+
+            return interestRate;
+        }
+
+
+        private void ProceedButton_Click(object sender, EventArgs e)
+        {
+            var tenureYears = 3;
+            var amount = Convert.ToDouble(this.InvestmentTxtbox.Text);
+            var transactionId = RandomString(8);
+            var name = ClientTxtBox.Text;
+            var phoneNo = phoneTxtBox.Text;
+            var emailId = EmailTxtBox.Text;
+            var interestRate = GetInterestRate(tenureYears, amount);
+            var totalEarned = CalculateCompoundInterest(amount, tenureYears, interestRate);
+            var interestEarned = Math.Round((totalEarned - amount), 2);
+
+            MessageBox.Show(
+                $"Name : {name} {Environment.NewLine}" +
+                $"PhoneNo : {phoneNo} {Environment.NewLine}" +
+                $"Email Id : {emailId} {Environment.NewLine}" +
+                $"Transaction Id : {transactionId} {Environment.NewLine}" +
+                $"Invested Amount : {amount} {Environment.NewLine}" +
+                $"Interest Rate : {interestRate} {Environment.NewLine}" +
+                $"Tenure in Years : {tenureYears} {Environment.NewLine}" +
+                $"Interest Earned : {interestEarned} {Environment.NewLine}" +
+                $"Total Earned : {totalEarned} {Environment.NewLine}"
+                );
+
+        }
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private void InvestorDetailsGroupBox_Enter(object sender, EventArgs e)
         {
 
         }

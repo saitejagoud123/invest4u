@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace kieraninvest4u1
 {
     partial class Form1
@@ -42,6 +44,11 @@ namespace kieraninvest4u1
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.clear1 = new System.Windows.Forms.Label();
             this.InvestmentGroupBox = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Amount = new System.Windows.Forms.ColumnHeader();
+            this.InterestRate = new System.Windows.Forms.ColumnHeader();
+            this.InterestAmount = new System.Windows.Forms.ColumnHeader();
+            this.Total = new System.Windows.Forms.ColumnHeader();
             this.InvestmentTxtbox = new System.Windows.Forms.TextBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -56,10 +63,8 @@ namespace kieraninvest4u1
             this.SubmitButton = new System.Windows.Forms.Button();
             this.TranscationIdLabel = new System.Windows.Forms.Label();
             this.phoneTxtBox = new System.Windows.Forms.TextBox();
-            this.TranscTxtBox = new System.Windows.Forms.TextBox();
             this.EmailTxtBox = new System.Windows.Forms.TextBox();
             this.ClientTxtBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -71,10 +76,6 @@ namespace kieraninvest4u1
             this.SearchButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.SearchTxtBox = new System.Windows.Forms.TextBox();
-            this.TotalLabel = new System.Windows.Forms.Label();
-            this.InterestLabel = new System.Windows.Forms.Label();
-            this.RateLabel = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
@@ -198,9 +199,7 @@ namespace kieraninvest4u1
             // 
             // InvestmentGroupBox
             // 
-            this.InvestmentGroupBox.Controls.Add(this.RateLabel);
-            this.InvestmentGroupBox.Controls.Add(this.InterestLabel);
-            this.InvestmentGroupBox.Controls.Add(this.TotalLabel);
+            this.InvestmentGroupBox.Controls.Add(this.listView1);
             this.InvestmentGroupBox.Controls.Add(this.InvestmentTxtbox);
             this.InvestmentGroupBox.Controls.Add(this.radioButton4);
             this.InvestmentGroupBox.Controls.Add(this.radioButton3);
@@ -211,7 +210,6 @@ namespace kieraninvest4u1
             this.InvestmentGroupBox.Controls.Add(this.SummaryButton);
             this.InvestmentGroupBox.Controls.Add(this.ProceedButton);
             this.InvestmentGroupBox.Controls.Add(this.DisplayButton);
-            this.InvestmentGroupBox.Controls.Add(this.panel5);
             this.InvestmentGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.InvestmentGroupBox.Location = new System.Drawing.Point(463, 373);
             this.InvestmentGroupBox.Name = "InvestmentGroupBox";
@@ -219,6 +217,43 @@ namespace kieraninvest4u1
             this.InvestmentGroupBox.TabIndex = 17;
             this.InvestmentGroupBox.TabStop = false;
             this.InvestmentGroupBox.Text = "Investment Options";
+            this.InvestmentGroupBox.Enter += new System.EventHandler(this.InvestmentGroupBox_Enter);
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Amount,
+            this.InterestRate,
+            this.InterestAmount,
+            this.Total});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(134, 114);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(489, 174);
+            this.listView1.TabIndex = 21;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // Amount
+            // 
+            this.Amount.Text = "InterestRate";
+            this.Amount.Width = 120;
+            // 
+            // InterestRate
+            // 
+            this.InterestRate.Text = "InterestRate";
+            this.InterestRate.Width = 120;
+            // 
+            // InterestAmount
+            // 
+            this.InterestAmount.Text = "InterestAmount";
+            this.InterestAmount.Width = 130;
+            // 
+            // Total
+            // 
+            this.Total.Text = "Total";
+            this.Total.Width = 100;
             // 
             // InvestmentTxtbox
             // 
@@ -290,6 +325,7 @@ namespace kieraninvest4u1
             this.ExitButton.TabIndex = 4;
             this.ExitButton.Text = "E&xit";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // SummaryButton
             // 
@@ -308,6 +344,7 @@ namespace kieraninvest4u1
             this.ProceedButton.TabIndex = 2;
             this.ProceedButton.Text = "&Proceed";
             this.ProceedButton.UseVisualStyleBackColor = true;
+            this.ProceedButton.Click += new System.EventHandler(this.ProceedButton_Click);
             // 
             // DisplayButton
             // 
@@ -324,10 +361,8 @@ namespace kieraninvest4u1
             this.InvestorDetailsGroupBox.Controls.Add(this.SubmitButton);
             this.InvestorDetailsGroupBox.Controls.Add(this.TranscationIdLabel);
             this.InvestorDetailsGroupBox.Controls.Add(this.phoneTxtBox);
-            this.InvestorDetailsGroupBox.Controls.Add(this.TranscTxtBox);
             this.InvestorDetailsGroupBox.Controls.Add(this.EmailTxtBox);
             this.InvestorDetailsGroupBox.Controls.Add(this.ClientTxtBox);
-            this.InvestorDetailsGroupBox.Controls.Add(this.label4);
             this.InvestorDetailsGroupBox.Controls.Add(this.label3);
             this.InvestorDetailsGroupBox.Controls.Add(this.label2);
             this.InvestorDetailsGroupBox.Controls.Add(this.label1);
@@ -338,6 +373,7 @@ namespace kieraninvest4u1
             this.InvestorDetailsGroupBox.TabIndex = 18;
             this.InvestorDetailsGroupBox.TabStop = false;
             this.InvestorDetailsGroupBox.Text = "Investor Details";
+            this.InvestorDetailsGroupBox.Enter += new System.EventHandler(this.InvestorDetailsGroupBox_Enter);
             // 
             // SubmitButton
             // 
@@ -365,13 +401,6 @@ namespace kieraninvest4u1
             this.phoneTxtBox.Size = new System.Drawing.Size(206, 28);
             this.phoneTxtBox.TabIndex = 24;
             // 
-            // TranscTxtBox
-            // 
-            this.TranscTxtBox.Location = new System.Drawing.Point(184, 237);
-            this.TranscTxtBox.Name = "TranscTxtBox";
-            this.TranscTxtBox.Size = new System.Drawing.Size(206, 28);
-            this.TranscTxtBox.TabIndex = 23;
-            // 
             // EmailTxtBox
             // 
             this.EmailTxtBox.Location = new System.Drawing.Point(184, 171);
@@ -385,15 +414,6 @@ namespace kieraninvest4u1
             this.ClientTxtBox.Name = "ClientTxtBox";
             this.ClientTxtBox.Size = new System.Drawing.Size(206, 28);
             this.ClientTxtBox.TabIndex = 21;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 240);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 21);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Transaction No.";
             // 
             // label3
             // 
@@ -505,40 +525,6 @@ namespace kieraninvest4u1
             this.SearchTxtBox.Size = new System.Drawing.Size(206, 28);
             this.SearchTxtBox.TabIndex = 24;
             // 
-            // TotalLabel
-            // 
-            this.TotalLabel.AutoSize = true;
-            this.TotalLabel.Location = new System.Drawing.Point(477, 99);
-            this.TotalLabel.Name = "TotalLabel";
-            this.TotalLabel.Size = new System.Drawing.Size(46, 21);
-            this.TotalLabel.TabIndex = 22;
-            this.TotalLabel.Text = "Total";
-            // 
-            // InterestLabel
-            // 
-            this.InterestLabel.AutoSize = true;
-            this.InterestLabel.Location = new System.Drawing.Point(329, 99);
-            this.InterestLabel.Name = "InterestLabel";
-            this.InterestLabel.Size = new System.Drawing.Size(70, 21);
-            this.InterestLabel.TabIndex = 21;
-            this.InterestLabel.Text = "Interest";
-            // 
-            // RateLabel
-            // 
-            this.RateLabel.AutoSize = true;
-            this.RateLabel.Location = new System.Drawing.Point(196, 99);
-            this.RateLabel.Name = "RateLabel";
-            this.RateLabel.Size = new System.Drawing.Size(45, 21);
-            this.RateLabel.TabIndex = 20;
-            this.RateLabel.Text = "Rate";
-            // 
-            // panel5
-            // 
-            this.panel5.Location = new System.Drawing.Point(185, 123);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(415, 185);
-            this.panel5.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -604,10 +590,8 @@ namespace kieraninvest4u1
         private System.Windows.Forms.Button SubmitButton;
         private System.Windows.Forms.Label TranscationIdLabel;
         private System.Windows.Forms.TextBox phoneTxtBox;
-        private System.Windows.Forms.TextBox TranscTxtBox;
         private System.Windows.Forms.TextBox EmailTxtBox;
         private System.Windows.Forms.TextBox ClientTxtBox;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -619,10 +603,11 @@ namespace kieraninvest4u1
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.TextBox SearchTxtBox;
-        private System.Windows.Forms.Label RateLabel;
-        private System.Windows.Forms.Label InterestLabel;
-        private System.Windows.Forms.Label TotalLabel;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader InterestRate;
+        private System.Windows.Forms.ColumnHeader InterestAmount;
+        private System.Windows.Forms.ColumnHeader Total;
+        public System.Windows.Forms.ColumnHeader Amount;
     }
 }
 
