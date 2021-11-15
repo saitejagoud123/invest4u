@@ -69,13 +69,22 @@ namespace kieraninvest4u1
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SearchTranscGroupBox = new System.Windows.Forms.GroupBox();
-            this.SearchResultslistBox = new System.Windows.Forms.ListBox();
             this.TranscRadioButton = new System.Windows.Forms.RadioButton();
             this.EmailRadioButton = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.SearchTxtBox = new System.Windows.Forms.TextBox();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
@@ -211,7 +220,7 @@ namespace kieraninvest4u1
             this.InvestmentGroupBox.Controls.Add(this.ProceedButton);
             this.InvestmentGroupBox.Controls.Add(this.DisplayButton);
             this.InvestmentGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.InvestmentGroupBox.Location = new System.Drawing.Point(463, 373);
+            this.InvestmentGroupBox.Location = new System.Drawing.Point(463, 312);
             this.InvestmentGroupBox.Name = "InvestmentGroupBox";
             this.InvestmentGroupBox.Size = new System.Drawing.Size(629, 377);
             this.InvestmentGroupBox.TabIndex = 17;
@@ -237,7 +246,7 @@ namespace kieraninvest4u1
             // 
             // Amount
             // 
-            this.Amount.Text = "InterestRate";
+            this.Amount.Text = "Amount";
             this.Amount.Width = 120;
             // 
             // InterestRate
@@ -369,9 +378,9 @@ namespace kieraninvest4u1
             this.InvestorDetailsGroupBox.Controls.Add(this.label2);
             this.InvestorDetailsGroupBox.Controls.Add(this.label1);
             this.InvestorDetailsGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.InvestorDetailsGroupBox.Location = new System.Drawing.Point(1198, 373);
+            this.InvestorDetailsGroupBox.Location = new System.Drawing.Point(1165, 324);
             this.InvestorDetailsGroupBox.Name = "InvestorDetailsGroupBox";
-            this.InvestorDetailsGroupBox.Size = new System.Drawing.Size(500, 377);
+            this.InvestorDetailsGroupBox.Size = new System.Drawing.Size(500, 359);
             this.InvestorDetailsGroupBox.TabIndex = 18;
             this.InvestorDetailsGroupBox.TabStop = false;
             this.InvestorDetailsGroupBox.Text = "Investor Details";
@@ -379,7 +388,7 @@ namespace kieraninvest4u1
             // 
             // SubmitButton
             // 
-            this.SubmitButton.Location = new System.Drawing.Point(63, 342);
+            this.SubmitButton.Location = new System.Drawing.Point(53, 324);
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.Size = new System.Drawing.Size(94, 29);
             this.SubmitButton.TabIndex = 26;
@@ -392,7 +401,7 @@ namespace kieraninvest4u1
             this.TranscationIdLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TranscationIdLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.TranscationIdLabel.ForeColor = System.Drawing.Color.Blue;
-            this.TranscationIdLabel.Location = new System.Drawing.Point(197, 297);
+            this.TranscationIdLabel.Location = new System.Drawing.Point(184, 272);
             this.TranscationIdLabel.Name = "TranscationIdLabel";
             this.TranscationIdLabel.Size = new System.Drawing.Size(193, 34);
             this.TranscationIdLabel.TabIndex = 25;
@@ -447,35 +456,23 @@ namespace kieraninvest4u1
             // 
             // SearchTranscGroupBox
             // 
-            this.SearchTranscGroupBox.Controls.Add(this.SearchResultslistBox);
             this.SearchTranscGroupBox.Controls.Add(this.TranscRadioButton);
             this.SearchTranscGroupBox.Controls.Add(this.EmailRadioButton);
-            this.SearchTranscGroupBox.Controls.Add(this.label5);
             this.SearchTranscGroupBox.Controls.Add(this.SearchButton);
             this.SearchTranscGroupBox.Controls.Add(this.ClearButton);
             this.SearchTranscGroupBox.Controls.Add(this.SearchTxtBox);
             this.SearchTranscGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.SearchTranscGroupBox.Location = new System.Drawing.Point(1077, 788);
+            this.SearchTranscGroupBox.Location = new System.Drawing.Point(463, 745);
             this.SearchTranscGroupBox.Name = "SearchTranscGroupBox";
             this.SearchTranscGroupBox.Size = new System.Drawing.Size(621, 267);
             this.SearchTranscGroupBox.TabIndex = 19;
             this.SearchTranscGroupBox.TabStop = false;
             this.SearchTranscGroupBox.Text = "Serach Transactions";
             // 
-            // SearchResultslistBox
-            // 
-            this.SearchResultslistBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.SearchResultslistBox.FormattingEnabled = true;
-            this.SearchResultslistBox.ItemHeight = 21;
-            this.SearchResultslistBox.Location = new System.Drawing.Point(282, 79);
-            this.SearchResultslistBox.Name = "SearchResultslistBox";
-            this.SearchResultslistBox.Size = new System.Drawing.Size(333, 172);
-            this.SearchResultslistBox.TabIndex = 30;
-            // 
             // TranscRadioButton
             // 
             this.TranscRadioButton.AutoSize = true;
-            this.TranscRadioButton.Location = new System.Drawing.Point(27, 79);
+            this.TranscRadioButton.Location = new System.Drawing.Point(165, 37);
             this.TranscRadioButton.Name = "TranscRadioButton";
             this.TranscRadioButton.Size = new System.Drawing.Size(147, 25);
             this.TranscRadioButton.TabIndex = 29;
@@ -486,6 +483,7 @@ namespace kieraninvest4u1
             // EmailRadioButton
             // 
             this.EmailRadioButton.AutoSize = true;
+            this.EmailRadioButton.Checked = true;
             this.EmailRadioButton.Location = new System.Drawing.Point(27, 37);
             this.EmailRadioButton.Name = "EmailRadioButton";
             this.EmailRadioButton.Size = new System.Drawing.Size(74, 25);
@@ -493,11 +491,12 @@ namespace kieraninvest4u1
             this.EmailRadioButton.TabStop = true;
             this.EmailRadioButton.Text = "Email";
             this.EmailRadioButton.UseVisualStyleBackColor = true;
+            this.EmailRadioButton.CheckedChanged += new System.EventHandler(this.EmailRadioButton_CheckedChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(338, 41);
+            this.label5.Location = new System.Drawing.Point(1105, 720);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(125, 21);
             this.label5.TabIndex = 27;
@@ -505,35 +504,96 @@ namespace kieraninvest4u1
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(6, 202);
+            this.SearchButton.Location = new System.Drawing.Point(278, 92);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(94, 29);
             this.SearchButton.TabIndex = 26;
             this.SearchButton.Text = "&Search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(121, 202);
+            this.ClearButton.Location = new System.Drawing.Point(412, 92);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(94, 29);
             this.ClearButton.TabIndex = 25;
             this.ClearButton.Text = "&clear";
             this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // SearchTxtBox
             // 
-            this.SearchTxtBox.Location = new System.Drawing.Point(27, 110);
+            this.SearchTxtBox.Location = new System.Drawing.Point(27, 92);
             this.SearchTxtBox.Name = "SearchTxtBox";
             this.SearchTxtBox.Size = new System.Drawing.Size(206, 28);
             this.SearchTxtBox.TabIndex = 24;
+            this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(1105, 756);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(631, 256);
+            this.listView2.TabIndex = 30;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "TransactionId";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Name";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "PhoneNo";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "EmailId";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Tenure";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Amount";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "InterestRate";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Total";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Trans_Date";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1748, 1055);
+            this.Controls.Add(this.listView2);
             this.Controls.Add(this.SearchTranscGroupBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.InvestorDetailsGroupBox);
             this.Controls.Add(this.InvestmentGroupBox);
             this.Controls.Add(this.clear1);
@@ -599,7 +659,6 @@ namespace kieraninvest4u1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox SearchTranscGroupBox;
-        private System.Windows.Forms.ListBox SearchResultslistBox;
         private System.Windows.Forms.RadioButton TranscRadioButton;
         private System.Windows.Forms.RadioButton EmailRadioButton;
         private System.Windows.Forms.Label label5;
@@ -611,6 +670,16 @@ namespace kieraninvest4u1
         private System.Windows.Forms.ColumnHeader InterestAmount;
         private System.Windows.Forms.ColumnHeader Total;
         public System.Windows.Forms.ColumnHeader Amount;
+        private ListView listView2;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
+        private ColumnHeader columnHeader8;
+        private ColumnHeader columnHeader9;
     }
 }
 

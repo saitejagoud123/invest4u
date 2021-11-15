@@ -29,6 +29,7 @@ namespace kieraninvest4u1
 
         private Investor investor = null;
         private int termSelected = 1;
+        private string searchBy = "email";
 
         private const string fileName = "InvestmentBook.txt";
         public Form1()
@@ -160,9 +161,6 @@ namespace kieraninvest4u1
             return interestRate;
         }
 
-
-
-
         private void ProceedButton_Click(object sender, EventArgs e)
         {
             //var name = ClientTxtBox.Text;
@@ -226,9 +224,9 @@ namespace kieraninvest4u1
 
             if (dialogResult == DialogResult.Yes)
             {
-                var name = ClientTxtBox.Text;
-                var phoneNo = phoneTxtBox.Text;
-                var emailId = EmailTxtBox.Text;
+                var name = ClientTxtBox.Text.Trim();
+                var phoneNo = phoneTxtBox.Text.Trim();
+                var emailId = EmailTxtBox.Text.Trim();
                 var tenureYears = termSelected;
                 var transactionId = RandomString(8);
                 var amount = Convert.ToDouble(this.InvestmentTxtbox.Text);
@@ -312,7 +310,8 @@ namespace kieraninvest4u1
                 }
                 streamReader.Close();
             }
-            if (investmentCount > 0) {
+            if (investmentCount > 0)
+            {
                 averageInvestment = totalInvestment / investmentCount;
                 averageTerm /= investmentCount;
             }
@@ -323,6 +322,117 @@ namespace kieraninvest4u1
                 $"Average Term : {averageTerm} {Environment.NewLine}" +
                 $"Average Investment : {averageInvestment.ToString("n2")} {Environment.NewLine}" +
                 $"Total Transaction Count : {investmentCount} {Environment.NewLine}");
+        }
+
+        private void EmailRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (EmailRadioButton.Checked)
+            {
+                searchBy = "email";
+            }
+            else if (TranscRadioButton.Checked)
+            {
+                searchBy = "transaction";
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            this.listView2.Items.Clear();
+            var transactions = new List<Investor>();
+            int location = 1;
+            Investor transaction = null;
+            using (var streamReader = File.OpenText(fileName))
+            {
+                while (!streamReader.EndOfStream)
+                {
+                    switch (location)
+                    {
+                        case 1:
+                            transaction = new Investor();
+                            transaction.Name = streamReader.ReadLine();
+                            break;
+                        case 2:
+                            transaction.PhoneNo = streamReader.ReadLine();
+                            break;
+                        case 3:
+                            transaction.EmailId = streamReader.ReadLine();
+                            break;
+                        case 4:
+                            transaction.TransactionId = streamReader.ReadLine();
+                            break;
+                        case 5:
+                            transaction.TransactionDate = Convert.ToDateTime(streamReader.ReadLine());
+                            break;
+                        case 6:
+                            transaction.Amount = Convert.ToDouble(streamReader.ReadLine());
+                            break;
+                        case 7:
+                            transaction.Tenure = Convert.ToInt32(streamReader.ReadLine());
+                            break;
+                        case 8:
+                            transaction.InterestRate = Convert.ToDouble(streamReader.ReadLine());
+                            break;
+                        case 9:
+                            transaction.InterestAmount = Convert.ToDouble(streamReader.ReadLine());
+                            break;
+                        case 10:
+                            transaction.Total = Convert.ToDouble(streamReader.ReadLine());
+                            location = 0;
+                            transactions.Add(transaction);
+                            break;
+                    }
+                    location++;
+                }
+                streamReader.Close();
+            }
+
+            var filteredData = new List<Investor>();
+            var searchText = SearchTxtBox.Text.Trim().ToLower();
+            foreach (var item in transactions)
+            {
+                if (searchBy == "email")
+                {
+                    if (item.EmailId.ToLower() == searchText)
+                        filteredData.Add(item);
+                }
+                else if (searchBy == "transaction")
+                {
+                    if (item.TransactionId.ToLower() == searchText)
+                        filteredData.Add(item);
+                }
+            }
+
+            foreach (var item in filteredData)
+            {
+                ListViewItem listViewItem;
+                listViewItem = new ListViewItem(
+                                new string[] 
+                                { 
+                                        item.TransactionId.ToString(),
+                                        item.Name.ToString(),
+                                        item.PhoneNo.ToString(),
+                                        item.EmailId.ToString(),
+                                        item.Tenure.ToString(),
+                                        item.Amount.ToString(),
+                                        item.InterestRate.ToString(),
+                                        item.Total.ToString(),
+                                        item.TransactionDate.ToString(),
+                                });
+                listView2.Items.Add(listViewItem);
+
+            }
+
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.listView2.Items.Clear();
+        }
+
+        private void SearchTxtBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
