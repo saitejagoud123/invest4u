@@ -30,3 +30,5 @@ C:\Users\saite\Desktop\kieraninvest4u1\obj\Debug\netcoreapp3.1\kieraninvest4u1.c
 C:\Users\saite\Desktop\kieraninvest4u1\obj\Debug\netcoreapp3.1\kieraninvest4u1.dll
 C:\Users\saite\Desktop\kieraninvest4u1\obj\Debug\netcoreapp3.1\kieraninvest4u1.pdb
 C:\Users\saite\Desktop\kieraninvest4u1\obj\Debug\netcoreapp3.1\kieraninvest4u1.genruntimeconfig.cache
+C:\Users\saite\Desktop\kieraninvest4u1\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\saite\Desktop\kieraninvest4u1\obj\Debug\netcoreapp3.1\kieraninvest4u1.csproj.CopyComplete

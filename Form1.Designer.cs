@@ -268,11 +268,11 @@ namespace kieraninvest4u1
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(14, 263);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(98, 25);
+            this.radioButton4.Size = new System.Drawing.Size(93, 25);
             this.radioButton4.TabIndex = 8;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "10 Years ";
+            this.radioButton4.Text = "10 Years";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.termRadioButton_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -281,9 +281,9 @@ namespace kieraninvest4u1
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(87, 25);
             this.radioButton3.TabIndex = 7;
-            this.radioButton3.TabStop = true;
             this.radioButton3.Text = "5 Years";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.termRadioButton_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -292,9 +292,9 @@ namespace kieraninvest4u1
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(87, 25);
             this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "3 Years";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.termRadioButton_CheckedChanged);
             // 
             // InvestmentLabel
             // 
@@ -308,14 +308,15 @@ namespace kieraninvest4u1
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(23, 132);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(80, 25);
+            this.radioButton1.Size = new System.Drawing.Size(75, 25);
             this.radioButton1.TabIndex = 5;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "1 year ";
+            this.radioButton1.Text = "1 year";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.termRadioButton_CheckedChanged);
             // 
             // ExitButton
             // 
@@ -335,6 +336,7 @@ namespace kieraninvest4u1
             this.SummaryButton.TabIndex = 3;
             this.SummaryButton.Text = "su&mmary";
             this.SummaryButton.UseVisualStyleBackColor = true;
+            this.SummaryButton.Click += new System.EventHandler(this.SummaryButton_Click);
             // 
             // ProceedButton
             // 
@@ -383,6 +385,7 @@ namespace kieraninvest4u1
             this.SubmitButton.TabIndex = 26;
             this.SubmitButton.Text = "S&ubmit";
             this.SubmitButton.UseVisualStyleBackColor = true;
+            this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // TranscationIdLabel
             // 

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,10 @@ namespace kieraninvest4u1
         private const double baseMoney = 100000;
         private static Random random = new Random();
 
+        private Investor investor = null;
+        private int termSelected = 1;
+
+        private const string fileName = "InvestmentBook.txt";
         public Form1()
         {
             InitializeComponent();
@@ -43,35 +49,17 @@ namespace kieraninvest4u1
                     var b1_FiveYear = CalculateCompoundInterest(amount, 5, b1_FiveYearInterestRate);
                     var b1_TenYear = CalculateCompoundInterest(amount, 10, b1_TenYearInterestRate);
 
-
-                    string[] arr = new string[4];
                     ListViewItem item;
-                    arr[0] = amount.ToString();
-                    arr[1] = b1_OneYearInterestRate.ToString();
-                    arr[2] = (b1_OneYear - amount).ToString("n2");
-                    arr[3] = b1_OneYear.ToString();
-                    item = new ListViewItem(arr);
+                    item = new ListViewItem(new string[] { amount.ToString(), b1_OneYearInterestRate.ToString(), (b1_OneYear - amount).ToString("n2"), b1_OneYear.ToString() });
                     listView1.Items.Add(item);
 
-                    arr[0] = amount.ToString();
-                    arr[1] = b1_ThreeYearInterestRate.ToString();
-                    arr[2] = (b1_ThreeYear - amount).ToString("n2");
-                    arr[3] = b1_ThreeYear.ToString();
-                    item = new ListViewItem(arr);
+                    item = new ListViewItem(new string[] { amount.ToString(), b1_ThreeYearInterestRate.ToString(), (b1_ThreeYear - amount).ToString("n2"), b1_ThreeYear.ToString() });
                     listView1.Items.Add(item);
 
-                    arr[0] = amount.ToString();
-                    arr[1] = b1_FiveYearInterestRate.ToString();
-                    arr[2] = (b1_FiveYear - amount).ToString("n2");
-                    arr[3] = b1_FiveYear.ToString();
-                    item = new ListViewItem(arr);
+                    item = new ListViewItem(new string[] { amount.ToString(), b1_FiveYearInterestRate.ToString(), (b1_FiveYear - amount).ToString("n2"), b1_FiveYear.ToString() });
                     listView1.Items.Add(item);
 
-                    arr[0] = amount.ToString();
-                    arr[1] = b1_TenYearInterestRate.ToString();
-                    arr[2] = (b1_TenYear - amount).ToString("n2");
-                    arr[3] = b1_TenYear.ToString();
-                    item = new ListViewItem(arr);
+                    item = new ListViewItem(new string[] { amount.ToString(), b1_TenYearInterestRate.ToString(), (b1_TenYear - amount).ToString("n2"), b1_TenYear.ToString() });
                     listView1.Items.Add(item);
                 }
                 else
@@ -81,35 +69,18 @@ namespace kieraninvest4u1
                     var a1_FiveYear = CalculateCompoundInterest(amount, 5, a1_FiveYearInterestRate);
                     var a1_TenYear = CalculateCompoundInterest(amount, 10, a1_TenYearInterestRate);
 
-
-                    string[] arr = new string[4];
                     ListViewItem item;
-                    arr[0] = amount.ToString();
-                    arr[1] = a1_OneYearInterestRate.ToString();
-                    arr[2] = (a1_OneYear - amount).ToString("n2");
-                    arr[3] = a1_OneYear.ToString();
-                    item = new ListViewItem(arr);
+
+                    item = new ListViewItem(new string[] { amount.ToString(), a1_OneYearInterestRate.ToString(), (a1_OneYear - amount).ToString("n2"), a1_OneYear.ToString() });
                     listView1.Items.Add(item);
 
-                    arr[0] = amount.ToString();
-                    arr[1] = a1_ThreeYearInterestRate.ToString();
-                    arr[2] = (a1_ThreeYear - amount).ToString("n2");
-                    arr[3] = a1_ThreeYear.ToString();
-                    item = new ListViewItem(arr);
+                    item = new ListViewItem(new string[] { amount.ToString(), a1_ThreeYearInterestRate.ToString(), (a1_ThreeYear - amount).ToString("n2"), a1_ThreeYear.ToString() });
                     listView1.Items.Add(item);
 
-                    arr[0] = amount.ToString();
-                    arr[1] = a1_FiveYearInterestRate.ToString();
-                    arr[2] = (a1_FiveYear - amount).ToString("n2");
-                    arr[3] = a1_FiveYear.ToString();
-                    item = new ListViewItem(arr);
+                    item = new ListViewItem(new string[] { amount.ToString(), a1_FiveYearInterestRate.ToString(), (a1_FiveYear - amount).ToString("n2"), a1_FiveYear.ToString() });
                     listView1.Items.Add(item);
 
-                    arr[0] = amount.ToString();
-                    arr[1] = a1_TenYearInterestRate.ToString();
-                    arr[2] = (a1_TenYear - amount).ToString("n2");
-                    arr[3] = a1_TenYear.ToString();
-                    item = new ListViewItem(arr);
+                    item = new ListViewItem(new string[] { amount.ToString(), a1_TenYearInterestRate.ToString(), (a1_TenYear - amount).ToString("n2"), a1_TenYear.ToString() });
                     listView1.Items.Add(item);
                 }
             }
@@ -124,10 +95,7 @@ namespace kieraninvest4u1
             return Math.Round(total, 2);
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void InvestmentTxtbox_TextChanged(object sender, EventArgs e)
         {
@@ -193,29 +161,32 @@ namespace kieraninvest4u1
         }
 
 
+
+
         private void ProceedButton_Click(object sender, EventArgs e)
         {
-            var tenureYears = 3;
-            var amount = Convert.ToDouble(this.InvestmentTxtbox.Text);
-            var transactionId = RandomString(8);
-            var name = ClientTxtBox.Text;
-            var phoneNo = phoneTxtBox.Text;
-            var emailId = EmailTxtBox.Text;
-            var interestRate = GetInterestRate(tenureYears, amount);
-            var totalEarned = CalculateCompoundInterest(amount, tenureYears, interestRate);
-            var interestEarned = Math.Round((totalEarned - amount), 2);
+            //var name = ClientTxtBox.Text;
+            //var phoneNo = phoneTxtBox.Text;
+            //var emailId = EmailTxtBox.Text;
+            //var tenureYears = termSelected;
+            //var transactionId = RandomString(8);
+            //var amount = Convert.ToDouble(this.InvestmentTxtbox.Text);
+            //var interestRate = GetInterestRate(tenureYears, amount);
+            //var totalEarned = CalculateCompoundInterest(amount, tenureYears, interestRate);
+            //var interestEarned = Math.Round((totalEarned - amount), 2);
 
-            MessageBox.Show(
-                $"Name : {name} {Environment.NewLine}" +
-                $"PhoneNo : {phoneNo} {Environment.NewLine}" +
-                $"Email Id : {emailId} {Environment.NewLine}" +
-                $"Transaction Id : {transactionId} {Environment.NewLine}" +
-                $"Invested Amount : {amount} {Environment.NewLine}" +
-                $"Interest Rate : {interestRate} {Environment.NewLine}" +
-                $"Tenure in Years : {tenureYears} {Environment.NewLine}" +
-                $"Interest Earned : {interestEarned} {Environment.NewLine}" +
-                $"Total Earned : {totalEarned} {Environment.NewLine}"
-                );
+
+            //MessageBox.Show(
+            //    $"Name : {name} {Environment.NewLine}" +
+            //    $"PhoneNo : {phoneNo} {Environment.NewLine}" +
+            //    $"Email Id : {emailId} {Environment.NewLine}" +
+            //    $"Transaction Id : {transactionId} {Environment.NewLine}" +
+            //    $"Invested Amount : {amount} {Environment.NewLine}" +
+            //    $"Interest Rate : {interestRate} {Environment.NewLine}" +
+            //    $"Tenure in Years : {tenureYears} {Environment.NewLine}" +
+            //    $"Interest Earned : {interestEarned} {Environment.NewLine}" +
+            //    $"Total Earned : {totalEarned} {Environment.NewLine}"
+            //    );
 
         }
         public static string RandomString(int length)
@@ -229,5 +200,144 @@ namespace kieraninvest4u1
         {
 
         }
+        private void termRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                termSelected = 1;
+            }
+            else if (radioButton2.Checked)
+            {
+                termSelected = 3;
+            }
+            else if (radioButton3.Checked)
+            {
+                termSelected = 5;
+            }
+            else if (radioButton4.Checked)
+            {
+                termSelected = 10;
+            }
+        }
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure to save transaction?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                var name = ClientTxtBox.Text;
+                var phoneNo = phoneTxtBox.Text;
+                var emailId = EmailTxtBox.Text;
+                var tenureYears = termSelected;
+                var transactionId = RandomString(8);
+                var amount = Convert.ToDouble(this.InvestmentTxtbox.Text);
+                var interestRate = GetInterestRate(tenureYears, amount);
+                var totalEarned = CalculateCompoundInterest(amount, tenureYears, interestRate);
+                var interestEarned = Math.Round((totalEarned - amount), 2);
+
+                investor = new Investor()
+                {
+                    Amount = amount,
+                    EmailId = emailId,
+                    InterestAmount = interestEarned,
+                    InterestRate = interestRate,
+                    Name = name,
+                    PhoneNo = phoneNo,
+                    Tenure = tenureYears,
+                    Total = totalEarned,
+                    TransactionDate = DateTime.Now,
+                    TransactionId = transactionId
+                };
+
+                using (var streamWriter = File.AppendText(fileName))
+                {
+                    streamWriter.WriteLine(investor.Name);
+                    streamWriter.WriteLine(investor.PhoneNo);
+                    streamWriter.WriteLine(investor.EmailId);
+                    streamWriter.WriteLine(investor.TransactionId);
+                    streamWriter.WriteLine(investor.TransactionDate);
+                    streamWriter.WriteLine(investor.Amount);
+                    streamWriter.WriteLine(investor.Tenure);
+                    streamWriter.WriteLine(investor.InterestRate);
+                    streamWriter.WriteLine(investor.InterestAmount);
+                    streamWriter.WriteLine(investor.Total);
+
+                    //  var clientObj = JsonConvert.SerializeObject(investor);
+                    //  streamWriter.WriteLine(clientObj);
+                    streamWriter.Close();
+                }
+            }
+        }
+
+        private void SummaryButton_Click(object sender, EventArgs e)
+        {
+            double averageInvestment = 0;
+            double totalInvestment = 0;
+            double totalInterest = 0;
+            int averageTerm = 0;
+
+            int investmentCount = 0;
+            int location = 1;
+            using (var streamReader = File.OpenText(fileName))
+            {
+                while (!streamReader.EndOfStream)
+                {
+                    if (location % 6 == 0)
+                    {
+                        totalInvestment += Convert.ToDouble(streamReader.ReadLine());
+                    }
+                    else if (location % 7 == 0)
+                    {
+                        averageTerm += Convert.ToInt32(streamReader.ReadLine());
+                    }
+                    else if (location % 9 == 0)
+                    {
+                        totalInterest += Convert.ToDouble(streamReader.ReadLine());
+                    }
+                    else
+                    {
+                        streamReader.ReadLine();
+                    }
+                    if (location == 10)
+                    {
+                        investmentCount++;
+                        location = 1;
+                    }
+                    else
+                        location++;
+
+                    // var clientObj = JsonConvert.DeserializeObject<Investor>(streamReader.ReadLine());
+                    //  inves.Add(clientObj);
+                }
+                streamReader.Close();
+            }
+            if (investmentCount > 0) {
+                averageInvestment = totalInvestment / investmentCount;
+                averageTerm /= investmentCount;
+            }
+
+            MessageBox.Show(
+                $"Total Investment : {totalInvestment} {Environment.NewLine}" +
+                $"Total Interest : {totalInterest} {Environment.NewLine}" +
+                $"Average Term : {averageTerm} {Environment.NewLine}" +
+                $"Average Investment : {averageInvestment.ToString("n2")} {Environment.NewLine}" +
+                $"Total Transaction Count : {investmentCount} {Environment.NewLine}");
+        }
+    }
+
+    public class Investor
+    {
+        public string Name { get; set; }
+        public string PhoneNo { get; set; }
+        public string EmailId { get; set; }
+        public string TransactionId { get; set; }
+        public double Amount { get; set; }
+        public double InterestRate { get; set; }
+        public int Tenure { get; set; }
+        public double InterestAmount { get; set; }
+        public DateTime TransactionDate { get; set; }
+        public double Total { get; set; }
     }
 }
+
