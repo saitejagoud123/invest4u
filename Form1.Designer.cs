@@ -71,10 +71,10 @@ namespace kieraninvest4u1
             this.SearchTranscGroupBox = new System.Windows.Forms.GroupBox();
             this.TranscRadioButton = new System.Windows.Forms.RadioButton();
             this.EmailRadioButton = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.SearchTxtBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
@@ -271,6 +271,7 @@ namespace kieraninvest4u1
             this.InvestmentTxtbox.Size = new System.Drawing.Size(206, 28);
             this.InvestmentTxtbox.TabIndex = 20;
             this.InvestmentTxtbox.TextChanged += new System.EventHandler(this.InvestmentTxtbox_TextChanged);
+            this.InvestmentTxtbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InvestmentTxtbox_KeyPress);
             // 
             // radioButton4
             // 
@@ -493,15 +494,6 @@ namespace kieraninvest4u1
             this.EmailRadioButton.UseVisualStyleBackColor = true;
             this.EmailRadioButton.CheckedChanged += new System.EventHandler(this.EmailRadioButton_CheckedChanged);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1105, 720);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 21);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "Search Results";
-            // 
             // SearchButton
             // 
             this.SearchButton.Location = new System.Drawing.Point(278, 92);
@@ -529,6 +521,15 @@ namespace kieraninvest4u1
             this.SearchTxtBox.Size = new System.Drawing.Size(206, 28);
             this.SearchTxtBox.TabIndex = 24;
             this.SearchTxtBox.TextChanged += new System.EventHandler(this.SearchTxtBox_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1105, 720);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(125, 21);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Search Results";
             // 
             // listView2
             // 

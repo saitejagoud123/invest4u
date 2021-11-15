@@ -407,8 +407,8 @@ namespace kieraninvest4u1
             {
                 ListViewItem listViewItem;
                 listViewItem = new ListViewItem(
-                                new string[] 
-                                { 
+                                new string[]
+                                {
                                         item.TransactionId.ToString(),
                                         item.Name.ToString(),
                                         item.PhoneNo.ToString(),
@@ -433,6 +433,21 @@ namespace kieraninvest4u1
         private void SearchTxtBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void InvestmentTxtbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 
